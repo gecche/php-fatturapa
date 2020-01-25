@@ -32,6 +32,7 @@ use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiGenerali\
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiGenerali\DatiSAL;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiGenerali\DatiTrasporto;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiGenerali\FatturaPrincipale;
+use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiGenerali\IndirizzoResa;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiPagamento\DatiPagamento;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiPagamento\DettaglioPagamento;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaBody\DatiVeicoli\DatiVeicoli;
@@ -42,6 +43,7 @@ use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\CedentePres
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\CedentePrestatore\IscrizioneREA;
 use Robertogallea\FatturaPA\Model\Common\StabileOrganizzazione;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\CessionarioCommittente\CessionarioCommittente;
+use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\DatiTrasmissione\ContattiTrasmittente;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\DatiTrasmissione\DatiTrasmissione;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\DatiTrasmissione\IdTrasmittente;
 use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\FatturaElettronicaHeader;
@@ -77,6 +79,10 @@ class FatturaPA {
                 return $fatturaElettronica;
             },
 
+            /*
+             * HEADER
+             */
+
             'FatturaElettronicaHeader' => function(Reader $reader) {
                 $fatturaElettronicaHeader = new FatturaElettronicaHeader();
                 $fatturaElettronicaHeader->traverse($reader);
@@ -85,96 +91,116 @@ class FatturaPA {
 
             },
 
-            'CedentePrestatore' => function(Reader $reader) {
-                $cedentePrestatore = new CedentePrestatore();
-                $cedentePrestatore->traverse($reader);
+                'DatiTrasmissione' => function(Reader $reader) {
+                    $datiTrasmissione = new DatiTrasmissione();
+                    $datiTrasmissione->traverse($reader);
 
-                return $cedentePrestatore;
-            },
+                    return $datiTrasmissione;
+                },
 
-            'Contatti' => function(Reader $reader) {
-                $contatti = new Contatti();
-                $contatti->traverse($reader);
+                    'IdTrasmittente' => function(Reader $reader) {
+                        $idTrasmittente = new IdTrasmittente();
+                        $idTrasmittente->traverse($reader);
 
-                return $contatti;
-            },
+                        return $idTrasmittente;
+                    },
 
-            'Anagrafica' => function(Reader $reader) {
-                $anagrafica = new Anagrafica();
-                $anagrafica->traverse($reader);
+                    'ContattiTrasmittente' => function(Reader $reader) {
+                        $idTrasmittente = new ContattiTrasmittente();
+                        $idTrasmittente->traverse($reader);
 
-                return $anagrafica;
-            },
+                        return $idTrasmittente;
+                    },
 
-            'Sede' => function(Reader $reader) {
-                $sede = new Sede();
-                $sede->traverse($reader);
+                'CedentePrestatore' => function(Reader $reader) {
+                    $cedentePrestatore = new CedentePrestatore();
+                    $cedentePrestatore->traverse($reader);
 
-                return $sede;
-            },
+                    return $cedentePrestatore;
+                },
 
-            'StabileOrganizzazione' => function(Reader $reader) {
-                $stabileOrganizzazione = new StabileOrganizzazione();
-                $stabileOrganizzazione->traverse($reader);
+                    'DatiAnagrafici' => function(Reader $reader) {
+                        $datiAnagrafici = new DatiAnagrafici();
+                        $datiAnagrafici->traverse($reader);
 
-                return $stabileOrganizzazione;
-            },
+                        return $datiAnagrafici;
+                    },
 
-            'IscrizioneREA' => function(Reader $reader) {
-                $iscrizioneREA = new IscrizioneREA();
-                $iscrizioneREA->traverse($reader);
+                        'IdFiscaleIVA' => function(Reader $reader) {
+                            $idFiscaleIVA = new IdFiscaleIVA();
+                            $idFiscaleIVA->traverse($reader);
 
-                return $iscrizioneREA;
-            },
+                            return $idFiscaleIVA;
+                        },
 
-            'CessionarioCommittente' => function(Reader $reader) {
-                $cessionarioCommittente = new CessionarioCommittente();
-                $cessionarioCommittente->traverse($reader);
+                        'Anagrafica' => function(Reader $reader) {
+                            $anagrafica = new Anagrafica();
+                            $anagrafica->traverse($reader);
 
-                return $cessionarioCommittente;
-            },
+                            return $anagrafica;
+                        },
 
-            'DatiTrasmissione' => function(Reader $reader) {
-                $datiTrasmissione = new DatiTrasmissione();
-                $datiTrasmissione->traverse($reader);
+                    'Sede' => function(Reader $reader) {
+                        $sede = new Sede();
+                        $sede->traverse($reader);
 
-                return $datiTrasmissione;
-            },
+                        return $sede;
+                    },
 
-            'RappresentanteFiscale' => function(Reader $reader) {
-                $rappresentanteFiscale = new RappresentanteFiscale();
-                $rappresentanteFiscale->traverse($reader);
+                    'StabileOrganizzazione' => function(Reader $reader) {
+                        $stabileOrganizzazione = new StabileOrganizzazione();
+                        $stabileOrganizzazione->traverse($reader);
 
-                return $rappresentanteFiscale;
-            },
+                        return $stabileOrganizzazione;
+                    },
 
-            'TerzoIntermediarioOSoggettoEmittente' => function(Reader $reader) {
-                $terzoIntermediarioOSoggettoEmittente = new TerzoIntermediarioOSoggettoEmittente();
-                $terzoIntermediarioOSoggettoEmittente->traverse($reader);
+                    'IscrizioneREA' => function(Reader $reader) {
+                        $iscrizioneREA = new IscrizioneREA();
+                        $iscrizioneREA->traverse($reader);
 
-                return $terzoIntermediarioOSoggettoEmittente;
-            },
+                        return $iscrizioneREA;
+                    },
 
-            'SoggettoEmittente' => function(Reader $reader) {
-                $soggettoEmittente = new SoggettoEmittente();
-                $soggettoEmittente->traverse($reader);
+                    'Contatti' => function(Reader $reader) {
+                        $contatti = new Contatti();
+                        $contatti->traverse($reader);
 
-                return $soggettoEmittente;
-            },
+                        return $contatti;
+                    },
 
-            'DatiAnagrafici' => function(Reader $reader) {
-                $datiAnagrafici = new DatiAnagrafici();
-                $datiAnagrafici->traverse($reader);
+                'RappresentanteFiscale' => function(Reader $reader) {
+                    $rappresentanteFiscale = new RappresentanteFiscale();
+                    $rappresentanteFiscale->traverse($reader);
 
-                return $datiAnagrafici;
-            },
+                    return $rappresentanteFiscale;
+                },
 
-            'IdTrasmittente' => function(Reader $reader) {
-                $idTrasmittente = new IdTrasmittente();
-                $idTrasmittente->traverse($reader);
+                'CessionarioCommittente' => function(Reader $reader) {
+                    $cessionarioCommittente = new CessionarioCommittente();
+                    $cessionarioCommittente->traverse($reader);
 
-                return $idTrasmittente;
-            },
+                    return $cessionarioCommittente;
+                },
+
+
+                'TerzoIntermediarioOSoggettoEmittente' => function(Reader $reader) {
+                    $terzoIntermediarioOSoggettoEmittente = new TerzoIntermediarioOSoggettoEmittente();
+                    $terzoIntermediarioOSoggettoEmittente->traverse($reader);
+
+                    return $terzoIntermediarioOSoggettoEmittente;
+                },
+
+
+                'SoggettoEmittente' => function(Reader $reader) {
+                    $soggettoEmittente = new SoggettoEmittente();
+                    $soggettoEmittente->traverse($reader);
+
+                    return $soggettoEmittente;
+                },
+
+            /*
+             * BODY
+             */
 
             'FatturaElettronicaBody' => function(Reader $reader) {
                 $fatturaElettronicaBody = new FatturaElettronicaBody();
@@ -183,187 +209,188 @@ class FatturaPA {
                 return $fatturaElettronicaBody;
             },
 
-            'DatiGenerali' => function(Reader $reader) {
-                $datiGenerali = new DatiGenerali();
-                $datiGenerali->traverse($reader);
+                'DatiGenerali' => function(Reader $reader) {
+                    $datiGenerali = new DatiGenerali();
+                    $datiGenerali->traverse($reader);
 
-                return $datiGenerali;
-            },
+                    return $datiGenerali;
+                },
 
-            'DatiGeneraliDocumento' => function(Reader $reader) {
-                $datiGeneraliDocumento = new DatiGeneraliDocumento();
-                $datiGeneraliDocumento->traverse($reader);
+                    'DatiGeneraliDocumento' => function(Reader $reader) {
+                        $datiGeneraliDocumento = new DatiGeneraliDocumento();
+                        $datiGeneraliDocumento->traverse($reader);
 
-                return $datiGeneraliDocumento;
-            },
+                        return $datiGeneraliDocumento;
+                    },
 
-            'DatiRitenuta' => function(Reader $reader) {
-                $datiRitenuta = new DatiRitenuta();
-                $datiRitenuta->traverse($reader);
+                        'DatiRitenuta' => function(Reader $reader) {
+                            $datiRitenuta = new DatiRitenuta();
+                            $datiRitenuta->traverse($reader);
 
-                return $datiRitenuta;
-            },
+                            return $datiRitenuta;
+                        },
 
-            'DatiBollo' => function(Reader $reader) {
-                $datiBollo = new DatiBollo();
-                $datiBollo->traverse($reader);
+                        'DatiBollo' => function(Reader $reader) {
+                            $datiBollo = new DatiBollo();
+                            $datiBollo->traverse($reader);
 
-                return $datiBollo;
-            },
+                            return $datiBollo;
+                        },
 
-            'DatiCassaPrevidenziale' => function(Reader $reader) {
-                $datiCassaPrevidenziale = new DatiCassaPrevidenziale();
-                $datiCassaPrevidenziale->traverse($reader);
+                        'DatiCassaPrevidenziale' => function(Reader $reader) {
+                            $datiCassaPrevidenziale = new DatiCassaPrevidenziale();
+                            $datiCassaPrevidenziale->traverse($reader);
 
-                return $datiCassaPrevidenziale;
-            },
+                            return $datiCassaPrevidenziale;
+                        },
 
-            'ScontoMaggiorazione' => function(Reader $reader) {
-                $scontoMaggiorazione = new ScontoMaggiorazione();
-                $scontoMaggiorazione->traverse($reader);
+                        'ScontoMaggiorazione' => function(Reader $reader) {
+                            $scontoMaggiorazione = new ScontoMaggiorazione();
+                            $scontoMaggiorazione->traverse($reader);
 
-                return $scontoMaggiorazione;
-            },
+                            return $scontoMaggiorazione;
+                        },
 
-            'DatiOrdineAcquisto' => function(Reader $reader) {
-                $datiOrdineAcquisto = new DatiOrdineAcquisto();
-                $datiOrdineAcquisto->traverse($reader);
+                    'DatiOrdineAcquisto' => function(Reader $reader) {
+                        $datiOrdineAcquisto = new DatiOrdineAcquisto();
+                        $datiOrdineAcquisto->traverse($reader);
 
-                return $datiOrdineAcquisto;
-            },
+                        return $datiOrdineAcquisto;
+                    },
 
-            'DatiContratto' => function(Reader $reader) {
-                $datiContratto = new DatiContratto();
-                $datiContratto->traverse($reader);
+//            'DatiContratto' => function(Reader $reader) {
+//                $datiContratto = new DatiContratto();
+//                $datiContratto->traverse($reader);
+//
+//                return $datiContratto;
+//            },
+//
+//            'DatiConvenzione' => function(Reader $reader) {
+//                $datiConvenzione = new DatiConvenzione();
+//                $datiConvenzione->traverse($reader);
+//
+//                return $datiConvenzione;
+//            },
+//
+//            'DatiRicezione' => function(Reader $reader) {
+//                $datiRicezione = new DatiRicezione();
+//                $datiRicezione->traverse($reader);
+//
+//                return $datiRicezione;
+//            },
+//
+//            'DatiFattureCollegate' => function(Reader $reader) {
+//                $datiFattureCollegate = new DatiFattureCollegate();
+//                $datiFattureCollegate->traverse($reader);
+//
+//                return $datiFattureCollegate;
+//            },
 
-                return $datiContratto;
-            },
+                    'DatiSAL' => function(Reader $reader) {
+                        $datiSAL = new DatiSAL();
+                        $datiSAL->traverse($reader);
 
-            'DatiConvenzione' => function(Reader $reader) {
-                $datiConvenzione = new DatiConvenzione();
-                $datiConvenzione->traverse($reader);
+                        return $datiSAL;
+                    },
 
-                return $datiConvenzione;
-            },
+                    'DatiDDT' => function(Reader $reader) {
+                        $datiDDT = new DatiDDT();
+                        $datiDDT->traverse($reader);
 
-            'DatiRicezione' => function(Reader $reader) {
-                $datiRicezione = new DatiRicezione();
-                $datiRicezione->traverse($reader);
+                        return $datiDDT;
+                    },
 
-                return $datiRicezione;
-            },
+                    'DatiTrasporto' => function(Reader $reader) {
+                        $datiTrasporto = new DatiTrasporto();
+                        $datiTrasporto->traverse($reader);
 
-            'DatiFattureCollegate' => function(Reader $reader) {
-                $datiFattureCollegate = new DatiFattureCollegate();
-                $datiFattureCollegate->traverse($reader);
+                        return $datiTrasporto;
+                    },
 
-                return $datiFattureCollegate;
-            },
+                        'DatiAnagraficiVettore' => function(Reader $reader) {
+                            $datiAnagraficiVettore = new DatiAnagraficiVettore();
+                            $datiAnagraficiVettore->traverse($reader);
 
-            'DatiSAL' => function(Reader $reader) {
-                $datiSAL = new DatiSAL();
-                $datiSAL->traverse($reader);
+                            return $datiAnagraficiVettore;
+                        },
 
-                return $datiSAL;
-            },
+                        'IndirizzoResa' => function(Reader $reader) {
+                            $indirizzoResa = new IndirizzoResa();
+                            $indirizzoResa->traverse($reader);
 
-            'DatiDDT' => function(Reader $reader) {
-                $datiDDT = new DatiDDT();
-                $datiDDT->traverse($reader);
+                            return $indirizzoResa;
+                        },
 
-                return $datiDDT;
-            },
+                    'FatturaPrincipale' => function(Reader $reader) {
+                        $fatturaPrincipale = new FatturaPrincipale();
+                        $fatturaPrincipale->traverse($reader);
 
-            'DatiTrasporto' => function(Reader $reader) {
-                $datiTrasporto = new DatiTrasporto();
-                $datiTrasporto->traverse($reader);
+                        return $fatturaPrincipale;
+                    },
 
-                return $datiTrasporto;
-            },
+                'DatiBeniServizi' => function(Reader $reader) {
+                    $datiBeniServizi = new DatiBeniServizi();
+                    $datiBeniServizi->traverse($reader);
 
-            'FatturaPrincipale' => function(Reader $reader) {
-                $fatturaPrincipale = new FatturaPrincipale();
-                $fatturaPrincipale->traverse($reader);
+                    return $datiBeniServizi;
+                },
 
-                return $fatturaPrincipale;
-            },
+                    'DettaglioLinee' => function(Reader $reader) {
+                        $dettaglioLinee = new DettaglioLinee();
+                        $dettaglioLinee->traverse($reader);
 
-            'DatiBeniServizi' => function(Reader $reader) {
-                $datiBeniServizi = new DatiBeniServizi();
-                $datiBeniServizi->traverse($reader);
+                        return $dettaglioLinee;
+                    },
 
-                return $datiBeniServizi;
-            },
+                        'CodiceArticolo' => function(Reader $reader) {
+                            $codiceArticolo = new CodiceArticolo();
+                            $codiceArticolo->traverse($reader);
 
-            'DatiRiepilogo' => function(Reader $reader) {
-                $datiRiepilogo = new DatiRiepilogo();
-                $datiRiepilogo->traverse($reader);
+                            return $codiceArticolo;
+                        },
 
-                return $datiRiepilogo;
-            },
+                        'AltriDatiGestionali' => function(Reader $reader) {
+                            $altriDatiGestionali = new AltriDatiGestionali();
+                            $altriDatiGestionali->traverse($reader);
 
-            'AltriDatiGestionali' => function(Reader $reader) {
-                $altriDatiGestionali = new AltriDatiGestionali();
-                $altriDatiGestionali->traverse($reader);
+                            return $altriDatiGestionali;
+                        },
 
-                return $altriDatiGestionali;
-            },
+                    'DatiRiepilogo' => function(Reader $reader) {
+                        $datiRiepilogo = new DatiRiepilogo();
+                        $datiRiepilogo->traverse($reader);
 
-            'CodiceArticolo' => function(Reader $reader) {
-                $codiceArticolo = new CodiceArticolo();
-                $codiceArticolo->traverse($reader);
+                        return $datiRiepilogo;
+                    },
 
-                return $codiceArticolo;
-            },
+                'DatiVeicoli' => function(Reader $reader) {
+                    $datiVeicoli = new DatiVeicoli();
+                    $datiVeicoli->traverse($reader);
 
-            'DettaglioLinee' => function(Reader $reader) {
-                $dettaglioLinee = new DettaglioLinee();
-                $dettaglioLinee->traverse($reader);
+                    return $datiVeicoli;
+                },
 
-                return $dettaglioLinee;
-            },
+                'DatiPagamento' => function(Reader $reader) {
+                    $datiPagamento = new DatiPagamento();
+                    $datiPagamento->traverse($reader);
 
-            'DatiVeicoli' => function(Reader $reader) {
-                $datiVeicoli = new DatiVeicoli();
-                $datiVeicoli->traverse($reader);
+                    return $datiPagamento;
+                },
 
-                return $datiVeicoli;
-            },
+                    'DettaglioPagamento' => function(Reader $reader) {
+                        $dettaglioPagamento = new DettaglioPagamento();
+                        $dettaglioPagamento->traverse($reader);
 
-            'DatiPagamento' => function(Reader $reader) {
-                $datiPagamento = new DatiPagamento();
-                $datiPagamento->traverse($reader);
+                        return $dettaglioPagamento;
+                    },
 
-                return $datiPagamento;
-            },
+                'Allegati' => function(Reader $reader) {
+                    $allegati = new Allegati();
+                    $allegati->traverse($reader);
 
-            'DettaglioPagamento' => function(Reader $reader) {
-                $dettaglioPagamento = new DettaglioPagamento();
-                $dettaglioPagamento->traverse($reader);
+                    return $allegati;
+                },
 
-                return $dettaglioPagamento;
-            },
-
-            'Allegati' => function(Reader $reader) {
-                $allegati = new Allegati();
-                $allegati->traverse($reader);
-
-                return $allegati;
-            },
-
-            'DatiAnagraficiVettore' => function(Reader $reader) {
-                $datiAnagraficiVettore = new DatiAnagraficiVettore();
-                $datiAnagraficiVettore->traverse($reader);
-
-                return $datiAnagraficiVettore;
-            },
-
-            'IdFiscaleIVA' => function(Reader $reader) {
-                $idFiscaleIVA = new IdFiscaleIVA();
-                $idFiscaleIVA->traverse($reader);
-
-                return $idFiscaleIVA;
-            },
         ];
 
         return $service->parse($string);

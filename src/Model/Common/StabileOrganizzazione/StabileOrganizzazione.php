@@ -6,7 +6,7 @@
  * Time: 09:49
  */
 
-namespace Robertogallea\FatturaPA\Model\Common;
+namespace Robertogallea\FatturaPA\Model\Common\StabileOrganizzazione;
 
 
 use Robertogallea\FatturaPA\Model\Common\Sede\Sede;
