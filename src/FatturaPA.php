@@ -191,13 +191,6 @@ class FatturaPA {
                 },
 
 
-                'SoggettoEmittente' => function(Reader $reader) {
-                    $soggettoEmittente = new SoggettoEmittente();
-                    $soggettoEmittente->traverse($reader);
-
-                    return $soggettoEmittente;
-                },
-
             /*
              * BODY
              */

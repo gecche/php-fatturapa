@@ -9,7 +9,7 @@
 namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader;
 
 
-use Robertogallea\FatturaPA\Model\Common\DatiAnagrafici\DatiAnagrafici;
+use Robertogallea\FatturaPA\Model\Common\DatiAnagrafici;
 use Robertogallea\FatturaPA\Traits\Traversable;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
@@ -27,7 +27,7 @@ class RappresentanteFiscale implements XmlSerializable
         $children = $reader->parseInnerTree();
 
         foreach($children as $child) {
-            if ($child['value'] instanceof \Robertogallea\FatturaPA\Model\Common\DatiAnagrafici) {
+            if ($child['value'] instanceof DatiAnagrafici) {
                 $this->DatiAnagrafici = $child['value'];
             }
         }

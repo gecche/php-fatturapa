@@ -12,7 +12,6 @@ namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader;
 use Robertogallea\FatturaPA\Model\Common\DatiAnagrafici;
 use Robertogallea\FatturaPA\Model\Common\Sede;
 use Robertogallea\FatturaPA\Model\Common\StabileOrganizzazione;
-use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\RappresentanteFiscale;
 use Robertogallea\FatturaPA\Traits\Traversable;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;

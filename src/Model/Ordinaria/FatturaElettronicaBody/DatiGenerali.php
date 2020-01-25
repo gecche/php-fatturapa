@@ -106,6 +106,11 @@ class DatiGenerali implements XmlSerializable
                 $data[] = ['name' => 'DatiConvenzione', 'value' => $DatiConvenzione];
             }
         }
+        if ($this->DatiRicezione) {
+            foreach ($this->DatiRicezione as $DatiRicezione) {
+                $data[] = ['name' => 'DatiRicezione', 'value' => $DatiRicezione];
+            }
+        }
         if ($this->DatiFattureCollegate) {
             foreach ($this->DatiFattureCollegate as $DatiFattureCollegate) {
                 $data[] = ['name' => 'DatiFattureCollegate', 'value' => $DatiFattureCollegate];
