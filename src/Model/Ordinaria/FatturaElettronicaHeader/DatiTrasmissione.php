@@ -6,10 +6,12 @@
  * Time: 21:32
  */
 
-namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\DatiTrasmissione;
+namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader;
 
 
 use Robertogallea\FatturaPA\Exceptions\InvalidValueException;
+use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\DatiTrasmissione\ContattiTrasmittente;
+use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\DatiTrasmissione\IdTrasmittente;
 use Robertogallea\FatturaPA\Traits\Traversable;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;

@@ -6,13 +6,15 @@
  * Time: 21:30
  */
 
-namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\CedentePrestatore;
+namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader;
 
 
 use Robertogallea\FatturaPA\Exceptions\InvalidValueException;
-use Robertogallea\FatturaPA\Model\Common\DatiAnagrafici\DatiAnagrafici;
-use Robertogallea\FatturaPA\Model\Common\Sede\Sede;
+use Robertogallea\FatturaPA\Model\Common\DatiAnagrafici;
+use Robertogallea\FatturaPA\Model\Common\Sede;
 use Robertogallea\FatturaPA\Model\Common\StabileOrganizzazione;
+use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\CedentePrestatore\Contatti;
+use Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\CedentePrestatore\IscrizioneREA;
 use Robertogallea\FatturaPA\Traits\Traversable;
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;

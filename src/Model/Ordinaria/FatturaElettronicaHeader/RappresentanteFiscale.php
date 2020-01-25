@@ -6,7 +6,7 @@
  * Time: 21:33
  */
 
-namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader\RappresentanteFiscale;
+namespace Robertogallea\FatturaPA\Model\Ordinaria\FatturaElettronicaHeader;
 
 
 use Robertogallea\FatturaPA\Model\Common\DatiAnagrafici\DatiAnagrafici;
@@ -27,7 +27,7 @@ class RappresentanteFiscale implements XmlSerializable
         $children = $reader->parseInnerTree();
 
         foreach($children as $child) {
-            if ($child['value'] instanceof DatiAnagrafici) {
+            if ($child['value'] instanceof \Robertogallea\FatturaPA\Model\Common\DatiAnagrafici) {
                 $this->DatiAnagrafici = $child['value'];
             }
         }
