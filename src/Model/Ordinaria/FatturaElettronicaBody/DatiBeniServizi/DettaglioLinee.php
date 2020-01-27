@@ -88,7 +88,7 @@ class DettaglioLinee implements XmlSerializable
             } elseif ($child['name'] === '{}UnitaMisura') {
                 $this->UnitaMisura = $child['value'];
             } elseif ($child['name'] === '{}DataInizioPeriodo') {
-                $this->DataFinePeriodo = $child['value'];
+                $this->DataInizioPeriodo = $child['value'];
             } elseif ($child['name'] === '{}DataFinePeriodo') {
                 $this->DataFinePeriodo = $child['value'];
             } elseif ($child['name'] === '{}PrezzoUnitario') {

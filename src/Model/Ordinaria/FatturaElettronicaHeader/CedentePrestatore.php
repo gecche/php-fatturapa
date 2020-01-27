@@ -54,10 +54,10 @@ class CedentePrestatore implements XmlSerializable
                 $this->DatiAnagrafici = $child['value'];
             } elseif ($child['value'] instanceof IscrizioneREA) {
                 $this->IscrizioneREA = $child['value'];
-            } elseif ($child['value'] instanceof Sede) {
-                $this->Sede = $child['value'];
             } elseif ($child['value'] instanceof StabileOrganizzazione) {
                 $this->StabileOrganizzazione = $child['value'];
+            } elseif ($child['value'] instanceof Sede) {
+                $this->Sede = $child['value'];
             } elseif ($child['name'] === '{}RiferimentoAmministrazione') {
                 $this->RiferimentoAmministrazione = $child['value'];
             }
@@ -73,6 +73,7 @@ class CedentePrestatore implements XmlSerializable
         $this->IscrizioneREA ? $data['IscrizioneREA'] = $this->IscrizioneREA : null;
         $this->Contatti ? $data['Contatti'] = $this->Contatti : null;
         $this->RiferimentoAmministrazione ? $data['RiferimentoAmministrazione'] = $this->RiferimentoAmministrazione : null;
+
         $writer->write($data);
     }
 
@@ -135,7 +136,7 @@ class CedentePrestatore implements XmlSerializable
      */
     public function getIscrizioneREA()
     {
-        return $this->IscrizioneRea;
+        return $this->IscrizioneREA;
     }
 
     /**
